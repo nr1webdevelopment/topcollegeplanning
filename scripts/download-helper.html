@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TCP Image Downloader</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #f5f5f5; padding: 32px; }
+  h1 { font-size: 22px; margin-bottom: 6px; }
+  p.sub { color: #666; margin-bottom: 24px; font-size: 14px; }
+  .btn-all {
+    background: #e85d26; color: #fff; border: none; padding: 14px 32px;
+    font-size: 16px; font-weight: 700; cursor: pointer; border-radius: 6px;
+    margin-bottom: 32px;
+  }
+  .btn-all:hover { background: #c94d1a; }
+  .btn-all:disabled { background: #aaa; cursor: default; }
+  #progress { margin-bottom: 24px; font-size: 14px; color: #444; min-height: 20px; }
+  .section { margin-bottom: 32px; }
+  .section h2 { font-size: 15px; text-transform: uppercase; letter-spacing: 1px;
+    color: #888; border-bottom: 1px solid #ddd; padding-bottom: 8px; margin-bottom: 16px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
+  .card {
+    background: #fff; border-radius: 8px; overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,.1); position: relative;
+  }
+  .card img { width: 100%; height: 120px; object-fit: cover; display: block; background: #ddd; }
+  .card .info { padding: 8px 10px 10px; }
+  .card .name { font-size: 12px; font-weight: 600; color: #333; word-break: break-all; }
+  .card .dl-btn {
+    margin-top: 6px; width: 100%; background: #1a1a3e; color: #fff; border: none;
+    padding: 6px; font-size: 12px; cursor: pointer; border-radius: 4px;
+  }
+  .card .dl-btn:hover { background: #e85d26; }
+  .card .status {
+    position: absolute; top: 6px; right: 6px; width: 20px; height: 20px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: bold; display: none;
+  }
+  .card.done .status { display: flex; background: #22c55e; color: #fff; }
+  .card.fail .status { display: flex; background: #ef4444; color: #fff; }
+</style>
+</head>
+<body>
+
+<h1>🎓 Top College Planning — Image Downloader</h1>
+<p class="sub">
+  Click <strong>Download All</strong> to save every image with its SEO-friendly filename.<br>
+  Files go to your <strong>Downloads</strong> folder — then move them into the project as shown below.
+</p>
+
+<button class="btn-all" onclick="downloadAll()">⬇ Download All Images</button>
+<div id="progress"></div>
+
+<div class="section">
+  <h2>Alumni Photos → move to <code>public/alumni/</code></h2>
+  <div class="grid" id="alumni-grid"></div>
+</div>
+
+<div class="section">
+  <h2>Site Images → move to <code>public/images/</code></h2>
+  <div class="grid" id="site-grid"></div>
+</div>
+
+<script>
+const ALUMNI = [
+  ["stephen-colbert",       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Stephen_Colbert_2019.jpg/440px-Stephen_Colbert_2019.jpg"],
+  ["christopher-reeve",     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Christopher_Reeve_in_1980.jpg/440px-Christopher_Reeve_in_1980.jpg"],
+  ["mehmet-oz",             "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Dr_Oz_2012.jpg/440px-Dr_Oz_2012.jpg"],
+  ["dr-seuss",              "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Ted_Geisel_NYWTS.jpg/440px-Ted_Geisel_NYWTS.jpg"],
+  ["natalie-portman",       "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Natalie_Portman_Cannes_2015_3.jpg/440px-Natalie_Portman_Cannes_2015_3.jpg"],
+  ["benjamin-franklin",     "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Benjamin_Franklin_by_Joseph-Siffrein_Duplessis.jpg/440px-Benjamin_Franklin_by_Joseph-Siffrein_Duplessis.jpg"],
+  ["john-legend",           "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/John_Legend_2019.jpg/440px-John_Legend_2019.jpg"],
+  ["bill-clinton",          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Bill_Clinton.jpg/440px-Bill_Clinton.jpg"],
+  ["george-w-bush",         "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/George-W-Bush.jpeg/440px-George-W-Bush.jpeg"],
+  ["michael-phelps",        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Michael_Phelps_2012.jpg/440px-Michael_Phelps_2012.jpg"],
+  ["donald-trump",          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/440px-Donald_Trump_official_portrait.jpg"],
+  ["george-stephanopoulos", "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/George_Stephanopoulos_2011.jpg/440px-George_Stephanopoulos_2011.jpg"],
+  ["michelle-obama",        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Michelle_Obama_2013_official_portrait.jpg/440px-Michelle_Obama_2013_official_portrait.jpg"],
+  ["mark-zuckerberg",       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29.jpg/440px-Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29.jpg"],
+  ["conan-obrien",          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Conan_O%27Brien_2019.jpg/440px-Conan_O%27Brien_2019.jpg"],
+  ["tom-brady",             "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Tom_Brady%2C_2017.jpg/440px-Tom_Brady%2C_2017.jpg"],
+  ["tiger-woods",           "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Tiger_Woods_at_the_2010_Ryder_Cup.jpg/440px-Tiger_Woods_at_the_2010_Ryder_Cup.jpg"],
+  ["warren-buffett",        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Warren_Buffett_KU_Visit.jpg/440px-Warren_Buffett_KU_Visit.jpg"],
+  ["bill-gates",            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Bill_Gates_2017_%28cropped%29.jpg/440px-Bill_Gates_2017_%28cropped%29.jpg"],
+  ["jeff-bezos",            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Jeff_Bezos_2016.jpg/440px-Jeff_Bezos_2016.jpg"],
+  ["elon-musk",             "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg/440px-Elon_Musk_Royal_Society_%28crop2%29.jpg"],
+  ["michael-bloomberg",     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Michael_Bloomberg_Shankbone_2010_NYC.jpg/440px-Michael_Bloomberg_Shankbone_2010_NYC.jpg"],
+]
+
+const SITE = [
+  ["college-graduate-hero",          "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=840&q=80&fit=crop"],
+  ["northwestern-university-logo",   "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Northwestern_Wildcats_logo.svg/200px-Northwestern_Wildcats_logo.svg.png"],
+  ["usc-trojans-logo",               "https://upload.wikimedia.org/wikipedia/en/thumb/e/e7/USC_Trojans_logo.svg/200px-USC_Trojans_logo.svg.png"],
+  ["columbia-lions-logo",            "https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/Columbia_Lions_logo.svg/200px-Columbia_Lions_logo.svg.png"],
+]
+
+function ext(url) {
+  const m = url.match(/\.(jpe?g|png|webp|gif|svg)/i)
+  return m ? '.' + m[1].toLowerCase().replace('jpeg','jpg') : '.jpg'
+}
+
+function makeCard(slug, url, container) {
+  const card = document.createElement('div')
+  card.className = 'card'
+  card.id = 'card-' + slug
+  const filename = slug + ext(url)
+  card.innerHTML = `
+    <img src="${url}" loading="lazy" onerror="this.style.background='#fee2e2'">
+    <div class="status">✓</div>
+    <div class="info">
+      <div class="name">${filename}</div>
+      <button class="dl-btn" onclick="downloadOne('${slug}','${url}')">Save</button>
+    </div>`
+  container.appendChild(card)
+}
+
+// Build grids
+const alumniGrid = document.getElementById('alumni-grid')
+const siteGrid   = document.getElementById('site-grid')
+ALUMNI.forEach(([slug, url]) => makeCard(slug, url, alumniGrid))
+SITE.forEach(([slug, url])   => makeCard(slug, url, siteGrid))
+
+async function downloadOne(slug, url) {
+  const card = document.getElementById('card-' + slug)
+  const filename = slug + ext(url)
+  try {
+    const res = await fetch(url)
+    if (!res.ok) throw new Error('HTTP ' + res.status)
+    const blob = await res.blob()
+    const a = document.createElement('a')
+    a.href = URL.createObjectURL(blob)
+    a.download = filename
+    document.body.appendChild(a)
+    a.click()
+    a.remove()
+    card.classList.add('done')
+  } catch(e) {
+    card.classList.add('fail')
+    card.querySelector('.status').textContent = '✗'
+    console.error(filename, e)
+  }
+}
+
+async function downloadAll() {
+  const btn = document.querySelector('.btn-all')
+  btn.disabled = true
+  const all = [...ALUMNI.map(([s,u]) => [s,u]), ...SITE.map(([s,u]) => [s,u])]
+  const prog = document.getElementById('progress')
+  for (let i = 0; i < all.length; i++) {
+    const [slug, url] = all[i]
+    prog.textContent = `Downloading ${i+1} / ${all.length}: ${slug}…`
+    await downloadOne(slug, url)
+    await new Promise(r => setTimeout(r, 400)) // small pause so browser doesn't block
+  }
+  prog.textContent = `✅ Done! Move files from Downloads into the correct folders (see headings above).`
+  btn.disabled = false
+}
+</script>
+</body>
+</html>

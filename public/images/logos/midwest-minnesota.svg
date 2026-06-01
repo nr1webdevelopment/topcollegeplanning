@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 88">
+  <!-- Shield shadow -->
+  <path d="M12,12 L72,12 L72,57 Q72,82 41,90 Q10,82 10,57 Z" fill="rgba(0,0,0,0.15)" transform="translate(1,1)"/>
+  <!-- Shield background -->
+  <path d="M10,10 L70,10 L70,55 Q70,80 40,88 Q10,80 10,55 Z" fill="#7A0019"/>
+  <!-- Shield border -->
+  <path d="M10,10 L70,10 L70,55 Q70,80 40,88 Q10,80 10,55 Z" fill="none" stroke="#FFCC33" stroke-width="2.5" opacity="0.6"/>
+  <!-- Horizontal stripe accent -->
+  <path d="M10,30 L70,30 L70,47 L10,47 Z" fill="rgba(255,255,255,0.07)"/>
+  <!-- Letters -->
+  <text x="40" y="50" text-anchor="middle" dominant-baseline="middle"
+    font-family="Georgia, 'Times New Roman', serif" font-weight="bold" font-size="26" fill="#FFCC33"
+    letter-spacing="1">M</text>
+</svg>
