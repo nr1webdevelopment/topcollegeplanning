@@ -25,6 +25,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
+          'var(--font-inter)',
           '-apple-system',
           'BlinkMacSystemFont',
           '"Segoe UI"',
@@ -32,6 +33,11 @@ const config: Config = {
           '"Helvetica Neue"',
           'Arial',
           'sans-serif',
+        ],
+        display: [
+          'var(--font-playfair)',
+          'Georgia',
+          'serif',
         ],
       },
     },

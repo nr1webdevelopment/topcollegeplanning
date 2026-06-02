@@ -18,15 +18,15 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-block bg-brand-orange hover:bg-brand-orange-dark text-white font-bold uppercase tracking-widest px-8 py-4 transition-colors duration-200;
+    @apply inline-block bg-brand-orange hover:bg-brand-orange-dark text-white font-bold uppercase tracking-widest px-8 py-4 transition-colors duration-200 rounded-sm;
   }
 
   .btn-outline {
-    @apply inline-block border-2 border-brand-orange text-brand-orange hover:bg-brand-orange hover:text-white font-bold uppercase tracking-widest px-8 py-4 transition-colors duration-200;
+    @apply inline-block border-2 border-brand-orange text-brand-orange hover:bg-brand-orange hover:text-white font-bold uppercase tracking-widest px-8 py-4 transition-colors duration-200 rounded-sm;
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-navy mb-4;
+    @apply text-3xl md:text-4xl font-bold text-navy mb-4 font-display;
   }
 
   .prose-content h2 { @apply text-2xl font-bold text-navy mt-8 mb-3; }
