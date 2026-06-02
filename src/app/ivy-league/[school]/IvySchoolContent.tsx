@@ -41,6 +41,19 @@ export default function IvySchoolContent({ school }: { school: IvySchool }) {
     <div className="bg-gray-soft min-h-screen">
       {/* ── HERO ── */}
       <div className="relative overflow-hidden" style={{ backgroundColor: school.color }}>
+        {/* Campus photo */}
+        {school.heroImage && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={school.heroImage}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+        )}
+        {/* School-color overlay */}
+        <div className="absolute inset-0 opacity-80" style={{ backgroundColor: school.color }} />
+        {/* Subtle radial rings */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10">
           {[1,2,3,4].map(i => (
             <div key={i} className="absolute rounded-full border-2 border-white"
@@ -145,7 +158,7 @@ export default function IvySchoolContent({ school }: { school: IvySchool }) {
               </div>
               <div>
                 <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">{t('Acceptance Rate vs. Other Ivies', '与其他常青藤学校录取率比较', 'Tasa de Aceptación vs. Otras Ivies')}</p>
-                {ivyLeagueSchools.sort((a, b) => a.admissionRateRaw - b.admissionRateRaw).map(s => (
+                {[...ivyLeagueSchools].sort((a, b) => a.admissionRateRaw - b.admissionRateRaw).map(s => (
                   <div key={s.slug} className={`flex items-center gap-3 mb-2 ${s.slug === school.slug ? 'opacity-100' : 'opacity-50'}`}>
                     <span className="w-20 text-xs font-semibold text-right text-navy flex-shrink-0">{s.shortName}</span>
                     <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
@@ -193,7 +206,7 @@ export default function IvySchoolContent({ school }: { school: IvySchool }) {
 
             <div className="bg-white border border-gray-100 p-6 shadow-sm">
               <h3 className="text-sm font-black text-navy uppercase tracking-widest mb-4 pb-2 border-b border-gray-100">{t('Endowment vs. Ivies', '捐赠基金比较', 'Dotación vs. Ivies')}</h3>
-              {ivyLeagueSchools.sort((a, b) => b.endowmentRaw - a.endowmentRaw).map(s => (
+              {[...ivyLeagueSchools].sort((a, b) => b.endowmentRaw - a.endowmentRaw).map(s => (
                 <div key={s.slug} className={`flex items-center gap-2 mb-3 ${s.slug === school.slug ? '' : 'opacity-50'}`}>
                   <span className="w-16 text-xs font-semibold text-right text-navy flex-shrink-0 truncate">{s.shortName}</span>
                   <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
