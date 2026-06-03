@@ -148,7 +148,7 @@ export default function HomePage() {
                 <span className="w-1.5 h-1.5 bg-brand-orange rounded-full" />
                 {t('Expert College Advisors', '专业升学顾问', 'Asesores Universitarios Expertos')}
               </div>
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6">
                 {t(
                   'Your Higher Education Success Begins Here.',
                   '您的高等教育成功之路，从这里开始。',
@@ -184,7 +184,7 @@ export default function HomePage() {
               </div>
               {/* Floating badge */}
               <div className="absolute -bottom-4 -left-4 bg-brand-orange text-white rounded-xl shadow-xl px-5 py-3">
-                <div className="font-display text-2xl font-black leading-none">95%</div>
+                <div className="text-2xl font-black leading-none">95%</div>
                 <div className="text-xs opacity-90 uppercase tracking-wide mt-0.5">
                   {t('Acceptance Rate', '录取率', 'Tasa de Éxito')}
                 </div>
@@ -200,7 +200,7 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {stats.map(stat => (
               <div key={stat.en}>
-                <div className="font-display text-4xl md:text-5xl font-black text-brand-orange mb-1">{stat.value}</div>
+                <div className="text-4xl md:text-5xl font-black text-brand-orange mb-1">{stat.value}</div>
                 <div className="text-gray-500 text-sm font-medium">{t(stat.en, stat.zh, stat.es)}</div>
               </div>
             ))}
@@ -273,7 +273,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy/50 to-transparent" />
                 {/* Text */}
                 <div className="relative p-6 w-full">
-                  <h3 className="font-display text-xl font-black text-white mb-1">
+                  <h3 className="text-xl font-black text-white mb-1">
                     {t(cat.en, cat.zh, cat.es)}
                   </h3>
                   <p className="text-sm text-gray-300 group-hover:text-white transition-colors">
@@ -349,7 +349,7 @@ export default function HomePage() {
       <section className="bg-navy py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-display text-3xl md:text-4xl font-black text-white mb-3">
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
               {t('Notable Alumni from Our Schools', '来自顶校的杰出校友', 'Exalumnos Destacados de Nuestras Escuelas')}
             </h2>
             <p className="text-gray-400 max-w-xl mx-auto text-sm leading-relaxed">
@@ -413,7 +413,7 @@ export default function HomePage() {
       {/* ── MEMBERSHIP CTA ──────────────────────────────────────────────── */}
       <section className="bg-navy py-20">
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="font-display text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
             {t(
               'You Deserve The Extra Boost To Get Into Your Dream School',
               '您值得获得迈入梦校的专业助力',

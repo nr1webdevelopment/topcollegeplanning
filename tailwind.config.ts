@@ -34,11 +34,6 @@ const config: Config = {
           'Arial',
           'sans-serif',
         ],
-        display: [
-          'var(--font-playfair)',
-          'Georgia',
-          'serif',
-        ],
       },
     },
   },
