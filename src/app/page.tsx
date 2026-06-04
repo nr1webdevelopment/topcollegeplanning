@@ -108,7 +108,7 @@ const notableAlumni = [
   { name: 'Mark Zuckerberg',  school: 'Harvard',            img: '/images/alumni/mark-zuckerberg.jpg' },
   { name: 'Jensen Huang',     school: 'Stanford',           img: '/images/alumni/jensen-huang.jpg' },
   { name: 'Warren Buffett',   school: 'Columbia',           img: '/images/alumni/warren-buffett.jpg' },
-  { name: 'Sam Altman',       school: 'Stanford',           img: '/images/alumni/sam-altman.jpg' },
+  { name: 'Sam Altman',       school: 'Stanford',           img: '/alumni/sam-altman.jpg' },
 ]
 
 const testimonials = [
@@ -137,17 +137,36 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ────────────────────────────────────────────────────────── */}
-      <section className="bg-navy text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-dark via-navy to-navy-light" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+      <section className="relative text-white py-20 md:py-28 overflow-hidden">
+        {/* Background photo */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/students-campus-background.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        {/* Navy overlay */}
+        <div className="absolute inset-0 bg-navy opacity-80" />
+        {/* Decorative radial rings */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10">
+          {[1, 2, 3].map(i => (
+            <div
+              key={i}
+              className="absolute rounded-full border border-white"
+              style={{ width: `${i * 420}px`, height: `${i * 420}px`, top: '50%', right: '-5%', transform: 'translateY(-50%)' }}
+            />
+          ))}
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
             {/* Copy */}
             <div>
-              <div className="inline-flex items-center gap-2 bg-brand-orange/20 border border-brand-orange/40 text-brand-orange text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
-                <span className="w-1.5 h-1.5 bg-brand-orange rounded-full" />
+              <p className="text-brand-orange font-bold uppercase tracking-widest text-sm mb-3">
                 {t('Expert College Advisors', '专业升学顾问', 'Asesores Universitarios Expertos')}
-              </div>
+              </p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6">
                 {t(
                   'Your Higher Education Success Begins Here.',
@@ -166,30 +185,29 @@ export default function HomePage() {
                 <Link href="/login" className="btn-primary">
                   {t('Get Started Free', '免费开始', 'Comenzar Gratis')}
                 </Link>
-                <Link href="/blog" className="btn-outline">
+                <Link href="/blog" className="btn-outline text-white border-white hover:bg-white hover:text-navy">
                   {t('Explore Our Guides', '浏览升学指南', 'Explorar Nuestras Guías')}
                 </Link>
               </div>
             </div>
 
-            {/* Hero image */}
-            <div className="relative flex justify-center">
-              <div className="rounded-2xl overflow-hidden w-full max-w-md aspect-[4/3] shadow-2xl border border-white/10">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/students-campus-background.jpg"
-                  alt="Students on a college campus"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              {/* Floating badge */}
-              <div className="absolute -bottom-4 -left-4 bg-brand-orange text-white rounded-xl shadow-xl px-5 py-3">
-                <div className="text-2xl font-black leading-none">95%</div>
-                <div className="text-xs opacity-90 uppercase tracking-wide mt-0.5">
-                  {t('Acceptance Rate', '录取率', 'Tasa de Éxito')}
+            {/* Stats glass card */}
+            <div className="hidden md:block">
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8">
+                <p className="text-brand-orange font-bold uppercase tracking-widest text-xs mb-6">
+                  {t('Our Track Record', '我们的成绩', 'Nuestro Historial')}
+                </p>
+                <div className="grid grid-cols-2 gap-6">
+                  {stats.map(stat => (
+                    <div key={stat.en}>
+                      <div className="text-3xl font-black text-white mb-1">{stat.value}</div>
+                      <div className="text-gray-300 text-xs font-medium leading-snug">{t(stat.en, stat.zh, stat.es)}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -350,7 +368,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
-              {t('Notable Alumni from Our Schools', '来自顶校的杰出校友', 'Exalumnos Destacados de Nuestras Escuelas')}
+              {t('World Top Leaders from Top Colleges', '顶尖院校的全球领袖', 'Líderes Mundiales de las Mejores Universidades')}
             </h2>
             <p className="text-gray-400 max-w-xl mx-auto text-sm leading-relaxed">
               {t(
@@ -381,7 +399,7 @@ export default function HomePage() {
               href="/alumni"
               className="inline-block border-2 border-white text-white hover:bg-white hover:text-navy font-bold uppercase tracking-widest px-8 py-4 transition-colors duration-200 rounded-sm"
             >
-              {t('Meet All Notable Alumni', '了解更多杰出校友', 'Conocer Más Exalumnos')}
+              {t('Find Out More', '了解更多', 'Descubrir Más')}
             </Link>
           </div>
         </div>
