@@ -3027,6 +3027,47 @@ export const notableAlumni: NotableAlumnus[] = [
     wikiTitle: 'George_H._W._Bush',
   },
 
+  // ── ANTHROPIC / AI ────────────────────────────────────────────────────────
+  {
+    slug: 'dario-amodei',
+    name: 'Dario Amodei',
+    knownFor: 'Co-founder & CEO of Anthropic (Claude AI)',
+    category: 'Tech',
+    bio: 'Dario Amodei co-founded Anthropic in 2021 after serving as VP of Research at OpenAI, where he led development of GPT-2 and GPT-3. He earned a B.S. in Physics from Stanford and a Ph.D. in Computational Neuroscience and Biophysics from Princeton as a Hertz Fellow. At Anthropic, he pioneered Constitutional AI — the training approach behind Claude — and has grown the company to a valuation exceeding $60 billion.',
+    schools: [
+      { name: 'Stanford University', degree: 'BS Physics', years: '2002–2006' },
+      { name: 'Princeton University', degree: 'PhD Computational Neuroscience & Biophysics', years: '2006–2011' },
+    ],
+    achievements: [
+      'Co-founded Anthropic in 2021 — now valued at over $60 billion',
+      'Created Claude, one of the world\'s most capable AI assistants',
+      'Pioneered Constitutional AI, a new approach to AI safety training',
+      'Led development of GPT-2 and GPT-3 as VP of Research at OpenAI',
+      'Named to TIME 100 Most Influential People (2024)',
+    ],
+    photoUrl: '/images/alumni/dario-amodei.jpg',
+    wikiTitle: 'Dario_Amodei',
+  },
+  {
+    slug: 'daniela-amodei',
+    name: 'Daniela Amodei',
+    knownFor: 'Co-founder & President of Anthropic (Claude AI)',
+    category: 'Tech',
+    bio: 'Daniela Amodei co-founded Anthropic in 2021 alongside her brother Dario, having previously served as VP of Operations at both Stripe and OpenAI. She studied English Literature at the University of California, Santa Cruz — a humanities degree she credits for her ability to communicate ideas clearly and ask the right questions in a technical field. She leads all business, legal, and go-to-market operations at Anthropic.',
+    schools: [
+      { name: 'University of California, Santa Cruz', degree: 'BA English Literature', years: '2000s' },
+    ],
+    achievements: [
+      'Co-founded Anthropic in 2021 — now valued at over $60 billion',
+      'Scaled Stripe\'s operations as VP of Operations during its hyper-growth phase',
+      'Secured landmark AI partnerships with Amazon and Google for Anthropic',
+      'Named to Forbes Power Women and Fortune\'s Most Powerful Women lists',
+      'Publicly advocates that humanities degrees are more valuable, not less, in the AI era',
+    ],
+    photoUrl: '/images/alumni/daniela-amodei.jpg',
+    wikiTitle: 'Daniela_Amodei',
+  },
+
   // ── CORNELL UNIVERSITY ────────────────────────────────────────────────────
   {
     slug: 'bill-nye',
