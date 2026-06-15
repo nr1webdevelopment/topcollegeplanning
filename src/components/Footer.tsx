@@ -6,6 +6,7 @@ import { useLanguage } from '@/lib/i18n'
 export default function Footer() {
   const pathname = usePathname()
   const { t } = useLanguage()
+  const year = new Date().getFullYear()
   if (pathname?.startsWith('/dashboard')) return null
 
   const quickLinks = [
@@ -107,7 +108,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-2 text-sm text-gray-400">
           <span>{t('Experienced University and College advisors.', '经验丰富的大学升学顾问团队。', 'Asesores universitarios con amplia experiencia.')}</span>
-          <span>{t('Copyright TopCollegePlanning.com © 2024. All rights reserved.', '版权所有 TopCollegePlanning.com © 2024。保留所有权利。', 'Copyright TopCollegePlanning.com © 2024. Todos los derechos reservados.')}</span>
+          <span>{t(`Copyright TopCollegePlanning.com © ${year}. All rights reserved.`, `版权所有 TopCollegePlanning.com © ${year}。保留所有权利。`, `Copyright TopCollegePlanning.com © ${year}. Todos los derechos reservados.`)}</span>
         </div>
       </div>
     </footer>
