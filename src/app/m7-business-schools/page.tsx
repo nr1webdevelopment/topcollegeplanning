@@ -5,6 +5,16 @@ import Link from 'next/link'
 import { m7Schools } from '@/data/m7-data'
 import { useLanguage } from '@/lib/i18n'
 
+function nameToSlug(name: string): string {
+  return name
+    .replace(/\s*\([^)]*\)\s*/g, '') // strip "(Nobel)", "(audited)", "(Nike)" etc.
+    .trim()
+    .toLowerCase()
+    .replace(/['.]/g, '')            // remove apostrophes and periods (e.g. W. → W)
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+}
+
 export default function M7BusinessSchoolsPage() {
   const { t } = useLanguage()
   const mbaPost = posts.find(p => p.slug === 'what-is-an-mba')
@@ -113,7 +123,12 @@ export default function M7BusinessSchoolsPage() {
                   {school.notableAlumni.map((alumnus, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-sm text-gray-700">
                       <span className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-brand-orange" />
-                      {alumnus}
+                      <Link
+                        href={`/alumni/${nameToSlug(alumnus)}`}
+                        className="hover:text-brand-orange hover:underline transition-colors font-medium"
+                      >
+                        {alumnus}
+                      </Link>
                     </li>
                   ))}
                 </ul>

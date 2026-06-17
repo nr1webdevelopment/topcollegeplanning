@@ -8,6 +8,7 @@ import { useLanguage } from '@/lib/i18n'
 // ── CURRENT SUPREME COURT JUSTICES ───────────────────────────────────────────
 const scotusJustices = [
   {
+    slug: 'john-roberts',
     name: 'John G. Roberts Jr.',
     title: 'Chief Justice',
     since: 2005,
@@ -15,10 +16,11 @@ const scotusJustices = [
     lawSchool: 'Harvard Law School',
     lawSchoolSlug: 'harvard-law',
     schoolColor: '#A51C30',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Official_roberts_CJ.jpg/400px-Official_roberts_CJ.jpg',
+    photo: '/images/alumni/john-roberts.jpg',
     notes: 'Focuses on institutional legitimacy of the Court; frequent swing vote in major decisions.',
   },
   {
+    slug: 'clarence-thomas',
     name: 'Clarence Thomas',
     title: 'Associate Justice',
     since: 1991,
@@ -26,10 +28,11 @@ const scotusJustices = [
     lawSchool: 'Yale Law School',
     lawSchoolSlug: 'yale-law',
     schoolColor: '#00356B',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Clarence_Thomas_official_SCOTUS_portrait_%283x4_cropped%29.jpg/400px-Clarence_Thomas_official_SCOTUS_portrait_%283x4_cropped%29.jpg',
+    photo: '/images/alumni/clarence-thomas.jpg',
     notes: 'Longest-serving current Justice. Strict originalist; known for writing solo concurrences.',
   },
   {
+    slug: 'samuel-alito',
     name: 'Samuel A. Alito Jr.',
     title: 'Associate Justice',
     since: 2006,
@@ -37,10 +40,11 @@ const scotusJustices = [
     lawSchool: 'Yale Law School',
     lawSchoolSlug: 'yale-law',
     schoolColor: '#00356B',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Samuel_Alito_official_photo.jpg/400px-Samuel_Alito_official_photo.jpg',
+    photo: '/images/alumni/samuel-alito.jpg',
     notes: 'Authored the majority opinion in Dobbs v. Jackson Women\'s Health Organization (2022).',
   },
   {
+    slug: 'sonia-sotomayor',
     name: 'Sonia Sotomayor',
     title: 'Associate Justice',
     since: 2009,
@@ -48,10 +52,11 @@ const scotusJustices = [
     lawSchool: 'Yale Law School',
     lawSchoolSlug: 'yale-law',
     schoolColor: '#00356B',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Sonia_Sotomayor_in_SCOTUS_robe.jpg/400px-Sonia_Sotomayor_in_SCOTUS_robe.jpg',
+    photo: '/images/alumni/sonia-sotomayor.jpg',
     notes: 'First Latina Supreme Court Justice. Grew up in the South Bronx; advocates for lived-experience in jurisprudence.',
   },
   {
+    slug: 'elena-kagan',
     name: 'Elena Kagan',
     title: 'Associate Justice',
     since: 2010,
@@ -59,10 +64,11 @@ const scotusJustices = [
     lawSchool: 'Harvard Law School',
     lawSchoolSlug: 'harvard-law',
     schoolColor: '#A51C30',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Elena_Kagan_Official_SCOTUS_Portrait_%282013%29.jpg/400px-Elena_Kagan_Official_SCOTUS_Portrait_%282013%29.jpg',
+    photo: '/images/alumni/elena-kagan.jpg',
     notes: 'Former Dean of Harvard Law School and first female Solicitor General of the United States.',
   },
   {
+    slug: 'neil-gorsuch',
     name: 'Neil M. Gorsuch',
     title: 'Associate Justice',
     since: 2017,
@@ -70,10 +76,11 @@ const scotusJustices = [
     lawSchool: 'Harvard Law School',
     lawSchoolSlug: 'harvard-law',
     schoolColor: '#A51C30',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Associate_Justice_Neil_Gorsuch_Official_Portrait.jpg/400px-Associate_Justice_Neil_Gorsuch_Official_Portrait.jpg',
+    photo: '/images/alumni/neil-gorsuch.jpg',
     notes: 'Textualist and originalist. Oxford Marshall Scholar; former 10th Circuit Court of Appeals judge.',
   },
   {
+    slug: 'brett-kavanaugh',
     name: 'Brett M. Kavanaugh',
     title: 'Associate Justice',
     since: 2018,
@@ -81,10 +88,11 @@ const scotusJustices = [
     lawSchool: 'Yale Law School',
     lawSchoolSlug: 'yale-law',
     schoolColor: '#00356B',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Associate_Justice_Brett_Kavanaugh_Official_Portrait_%28full_length%29.jpg/400px-Associate_Justice_Brett_Kavanaugh_Official_Portrait_%28full_length%29.jpg',
+    photo: '/images/alumni/brett-kavanaugh.jpg',
     notes: 'Former D.C. Circuit judge. Clerked for Justice Anthony Kennedy before his own confirmation.',
   },
   {
+    slug: 'amy-coney-barrett',
     name: 'Amy Coney Barrett',
     title: 'Associate Justice',
     since: 2020,
@@ -92,10 +100,11 @@ const scotusJustices = [
     lawSchool: 'Notre Dame Law School',
     lawSchoolSlug: null,
     schoolColor: '#0C2340',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Official_Amy_Barrett_photo.jpg/400px-Official_Amy_Barrett_photo.jpg',
-    notes: 'Former Notre Dame Law professor. Clerked for Justice Antonin Scalia. See her profile under Midwest\'s Best → Notre Dame.',
+    photo: '/images/alumni/amy-coney-barrett.jpg',
+    notes: 'Former Notre Dame Law professor. Clerked for Justice Antonin Scalia.',
   },
   {
+    slug: 'ketanji-brown-jackson',
     name: 'Ketanji Brown Jackson',
     title: 'Associate Justice',
     since: 2022,
@@ -103,7 +112,7 @@ const scotusJustices = [
     lawSchool: 'Harvard Law School',
     lawSchoolSlug: 'harvard-law',
     schoolColor: '#A51C30',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Ketanji_Brown_Jackson_official_SCOTUS_portrait.jpg/400px-Ketanji_Brown_Jackson_official_SCOTUS_portrait.jpg',
+    photo: '/images/alumni/ketanji-brown-jackson.jpg',
     notes: 'First Black woman to serve on the Supreme Court. Former federal public defender and D.C. Circuit judge.',
   },
 ]
@@ -246,29 +255,35 @@ export default function TopLawSchoolsPage() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-4">
             {scotusJustices.map((justice) => (
-              <div key={justice.name} className="bg-gray-soft overflow-hidden border-t-4 hover:shadow-md transition-all" style={{ borderColor: justice.schoolColor }}>
+              <Link
+                key={justice.slug}
+                href={`/alumni/${justice.slug}`}
+                className="group bg-gray-soft overflow-hidden border-t-4 hover:shadow-lg transition-all block"
+                style={{ borderColor: justice.schoolColor }}
+              >
                 {/* Portrait */}
-                <div className="h-52 overflow-hidden bg-gray-200">
+                <div className="h-52 overflow-hidden bg-gray-200 relative">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={justice.photo}
                     alt={justice.name}
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                   />
+                  <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity" />
                 </div>
                 {/* Info */}
                 <div className="p-4">
                   <p className="text-xs font-bold uppercase tracking-widest mb-0.5" style={{ color: justice.schoolColor }}>
                     {justice.title === 'Chief Justice' ? '⬡ Chief Justice' : 'Associate Justice'}
                   </p>
-                  <h3 className="font-black text-navy text-sm leading-tight mb-2">{justice.name}</h3>
+                  <h3 className="font-black text-navy text-sm leading-tight mb-2 group-hover:text-brand-orange transition-colors">{justice.name}</h3>
                   <div className="space-y-1 mb-3">
                     {justice.lawSchoolSlug ? (
-                      <Link href={`/top-law-schools/${justice.lawSchoolSlug}`}
-                        className="inline-block text-xs font-bold px-2 py-0.5 text-white hover:opacity-80 transition-opacity"
+                      <span
+                        className="inline-block text-xs font-bold px-2 py-0.5 text-white"
                         style={{ backgroundColor: justice.schoolColor }}>
                         {justice.lawSchool}
-                      </Link>
+                      </span>
                     ) : (
                       <span className="inline-block text-xs font-bold px-2 py-0.5 text-white" style={{ backgroundColor: justice.schoolColor }}>
                         {justice.lawSchool}
@@ -280,8 +295,9 @@ export default function TopLawSchoolsPage() {
                   </p>
                   <p className="text-xs text-gray-400 mb-2">Appointed by {justice.appointedBy}</p>
                   <p className="text-xs text-gray-600 leading-relaxed">{justice.notes}</p>
+                  <p className="text-xs font-bold text-brand-orange mt-3 opacity-0 group-hover:opacity-100 transition-opacity">View Profile →</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
